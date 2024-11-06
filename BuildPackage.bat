@@ -1,5 +1,6 @@
 @echo off
-%1 mshta vbscript:CreateObject("Shell.Application").ShellExecute("cmd.exe","/c %~s0 ::","","runas",1)(window.close)&&exit
-cd /d "%~dp0"
-G:\Venvs\MacRecGet\Scripts\python.exe BuildPackage.py build
-xcopy DownloadList.json build/exe.win-amd64-3.11/
+REM %1 mshta vbscript:CreateObject("Shell.Application").ShellExecute("cmd.exe","/c %~s0 ::","","runas",1)(window.close)&&exit
+REM cd /d "%~dp0"
+REM python.exe BuildPackage.py build
+
+powershell.exe "Start-Process python.exe 'BuildPackage.py build' -verb runAs "

@@ -3,21 +3,37 @@ import os
 from cx_Freeze import setup, Executable
 
 # ADD FILES
-files = []
+add_files = [
+    ("DownloadList.json", ""),
+    ("PullRecovery.ico", ""),
+    ("Etchers", "Etchers/"),
+    ("Scripts", "Scripts/"),
+    ("Scripts", "./lib/Scripts/"),
+]
 
 # TARGET
 target = Executable(
     script="PullRecovery.py",
     # base="Win32GUI",
-    icon="PullRecovery.ico"
+    icon="PullRecovery.ico",
+    uac_admin=True
 )
 
 # SETUP CX FREEZE
 setup(
     name="Mac OS Recovery Downloader",
-    version="0.1",
+    version="0.2.2024.1106",
     description="Mac OS Recovery Downloader",
     author="Pikachu Ren",
-    options={'build_exe': {'include_files': files}},
+    options={
+        'build_exe': {
+            'include_files': add_files,
+            "packages": [
+                "ttkbootstrap.utility",
+                "ttkbootstrap",
+            ],
+        },
+
+    },
     executables=[target],
 )

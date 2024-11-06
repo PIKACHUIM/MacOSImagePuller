@@ -236,7 +236,7 @@ def save_image(url, sess, filename='', directory='', process=None, start=0):
             #     print(f'\r{"":<{terminalsize - 2}}', end='')
             #     oldterminalsize = terminalsize
             if totalsize > 0:
-                process['process'] = start + (size / totalsize) * (80 - start)
+                process['process'] = start + (size / totalsize) * (100 - start)
                 progress = size / totalsize
                 # barwidth = terminalsize // 3
                 print(f'\r{size / (2 ** 20):.1f}/{totalsize / (2 ** 20):.1f} MB ', end='')
@@ -307,7 +307,7 @@ def action_download(args, process=None):
         cnkname = '' if args.basename == '' else args.basename + '.chunklist'
         cnkpath = save_image(info[INFO_SIGN_LINK], info[INFO_SIGN_SESS], cnkname, args.outdir, process, 0)
         dmgname = '' if args.basename == '' else args.basename + '.dmg'
-        dmgpath = save_image(info[INFO_IMAGE_LINK], info[INFO_IMAGE_SESS], dmgname, args.outdir, process, 10)
+        dmgpath = save_image(info[INFO_IMAGE_LINK], info[INFO_IMAGE_SESS], dmgname, args.outdir, process, 1)
     except (SystemExit, Exception) as e:
         print("Force to stop at:", str(e))
         return 0

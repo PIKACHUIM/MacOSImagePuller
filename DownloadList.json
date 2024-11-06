@@ -1,53 +1,61 @@
 {
-  "Lion": [
+  "10.07-Lion": [
     "Mac-2E6FAB96566FE58C",
     "00000000000F25Y00"
   ],
-  "Mountain Lion": [
+  "10.08-Mountain Lion": [
     "Mac-7DF2A3B5E5D671ED",
     "00000000000F65100"
   ],
-  "Mavericks": [
+  "10.19-Mavericks": [
     "Mac-F60DEB81FF30ACF6",
     "00000000000FNN100"
   ],
-  "Yosemite": [
+  "10.10-Yosemite": [
     "Mac-E43C1C25D4880AD6",
     "00000000000GDVW00"
   ],
-  "El Capitan": [
+  "10.11-El Capitan": [
     "Mac-FFE5EF870D7BA81A",
     "00000000000GQRX00"
   ],
-  "Sierra": [
+  "10.12-Sierra": [
     "Mac-77F17D7DA9285301",
     "00000000000J0DX00"
   ],
-  "High Sierra": [
+  "10.13-High Sierra": [
     "Mac-7BA5B2D9E42DDD94",
     "00000000000J80300"
   ],
-  "Mojave": [
+  "10.14-Mojave": [
     "Mac-7BA5B2DFE22DDD8C",
     "00000000000KXPG00"
   ],
-  "Catalina": [
+  "10.15-Catalina": [
     "Mac-CFF7D910A743CAAF",
     "00000000000PHCD00"
   ],
-  "Big Sur": [
+  "11.00-Big Sur": [
     "Mac-2BD1B31983FE1663",
     "00000000000000000"
   ],
-  "Monterey": [
+  "12.00-Monterey": [
     "Mac-E43C1C25D4880AD6",
     "00000000000000000"
   ],
-  "Ventura": [
+  "13.00-Ventura": [
     "Mac-B4831CEBD52A0C4C",
     "00000000000000000"
   ],
-  "Latest version": [
+  "14.00-Sonoma": [
+    "Mac-827FAC58A8FDFA22",
+    "00000000000000000"
+  ],
+  "15.00-Sequoia": [
+    "Mac-7BA5B2D9E42DDD94",
+    "00000000000000000"
+  ],
+  "Latest Version": [
     "Mac-7BA5B2D9E42DDD94",
     "00000000000000000"
   ]
