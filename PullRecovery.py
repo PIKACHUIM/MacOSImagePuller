@@ -1,0 +1,336 @@
+import json
+import multiprocessing
+import os
+import shutil
+import signal
+import subprocess
+import threading
+import time
+
+import psutil
+import ttkbootstrap as tt
+from tkinter import filedialog, messagebox
+from ttkbootstrap import *
+from Modules import PullGibMacOS
+from Modules.MacsRecovery import action_download
+from Modules.PullGibMacOS import gibMacOS
+
+
+class ArgRecDown:
+    def __init__(self,
+                 action='download', outdir='com.apple.recovery.boot',
+                 basename='', board_id='Mac-7BA5B2D9E42DDD94', mlb='00000000000000000',
+                 code='', os_type='latest', diagnostics=False, verbose=False,
+                 board_db='boards.json'
+                 ):
+        self.action = action
+        self.outdir = outdir
+        self.basename = basename
+        self.board_id = board_id
+        self.os_type = os_type
+        self.diagnostics = diagnostics
+        self.verbose = verbose
+        self.board_db = board_db
+        self.verbose = verbose
+        self.mlb = mlb
+        self.code = code
+
+
+class MacRecDown:
+    def __init__(self):
+        self.demo = None
+        self.proc = None
+        self.path = "MacRecovery/"
+        self.name = "Latest Version"
+        self.sets = "在线恢复镜像DMG"
+        self.data = dict()
+        self.root = tk.Tk()
+        self.flag = True
+        self.exec = {
+            "process": 0,
+            "extcute": True,
+        }
+        self.part = psutil.disk_partitions()
+        self.part = [i.device for i in self.part]
+        self.conf = tk.ttk.Style()
+        self.conf.theme_use("default")
+        self.conf.configure("TProgressbar", thickness=50)
+        # 设置主窗口宽度和高度
+        self.root.geometry("740x200")
+        self.root.iconbitmap("Configs/OpencoreImage.ico")
+        self.root.title("Mac OS 恢复镜像下载工具 (v0.2 Beta ©2024 Pikachu)")
+        self.root.protocol("WM_DELETE_WINDOW", self.onClosing)
+        # 系统选择 ============================================================
+        self.tk_l_sys = tt.Label(text="选择系统：")
+        self.tk_l_sys.grid(row=0, column=0, padx=10, sticky=W, pady=10)
+        self.tk_c_sys = tt.Combobox(bootstyle="info", width=15)
+        self.tk_c_sys.bind("<<ComboboxSelected>>", self.save_type)
+        self.tk_c_sys.grid(row=0, column=1, sticky=W, pady=10)
+        self.tk_l_pid = tt.Label(text="序列号：")
+        self.tk_l_pid.grid(row=0, column=2, sticky=W, pady=10)
+        self.tk_e_pid = tt.Entry(bootstyle="info", width=25)
+        self.tk_e_pid.insert(0, "Mac-7BA5B2D9E42DDD94")
+        self.tk_e_pid.grid(row=0, column=3, sticky=W, pady=10, columnspan=2)
+        self.tk_l_uid = tt.Label(text="机型串号：")
+        self.tk_l_uid.grid(row=0, column=5, pady=10)
+        self.tk_e_uid = tt.Entry(bootstyle="info", width=14)
+        self.tk_e_uid.insert(0, "00000000000000000")
+        self.tk_e_uid.grid(row=0, column=6, sticky=W, pady=10, padx=4)
+
+        # 路径选择 ============================================================
+        self.tk_l_url = tt.Label(text="保存路径：")
+        self.tk_l_url.grid(row=1, column=0, padx=10, pady=10)
+        self.tk_e_url = tt.Entry(bootstyle="info", width=72)
+        self.tk_e_url.insert(0, "MacRecovery/")
+        self.tk_e_url.grid(row=1, column=1, pady=10, columnspan=5)
+        self.tk_b_url = tt.Button(bootstyle="info", width=10, text="打开",
+                                  command=self.open_path)
+        self.tk_b_url.grid(row=1, column=6, pady=10, padx=22)
+
+        # 类型选择 ============================================================
+        self.dl_type_t = tt.Label(text="下载类型：")
+        self.dl_type_t.grid(row=2, column=0, padx=10, sticky=W, pady=10)
+        self.dl_type_d = tt.Combobox(bootstyle="info", width=15)
+        self.dl_type_d.grid(row=2, column=1, sticky=W, pady=10)
+        self.dl_type_d.configure(values=("在线恢复镜像DMG", "离线恢复固件DMG"))
+        self.dl_type_d.current(0)
+        self.dl_type_d.bind("<<ComboboxSelected>>", self.load_type)
+        self.dl_part_t = tt.Label(text="写分区：")
+        self.dl_part_t.grid(row=2, column=2, sticky=W, pady=10)
+        self.dl_part_d = tt.Combobox(bootstyle="info", width=10)
+        self.dl_part_d.grid(row=2, column=3, sticky=W, pady=10)
+        self.dl_part_d.configure(values=["不写入ESP"] + self.part)
+        self.dl_part_d.current(0)
+        self.tk_mounts = tt.Button(bootstyle="warning", text="挂载EFI",
+                                   command=self.load_esps)
+        self.tk_mounts.grid(row=2, column=4, pady=10)
+
+        self.tk_balen_ = tt.Label(text="镜像工具：")
+        self.tk_balen_.grid(row=2, column=5, pady=10)
+        self.tk_balens = tt.Button(bootstyle="success", width=10, text="BalenaEtcher",
+                                   command=MacRecDown.open_tool)
+        self.tk_balens.grid(row=2, column=6, pady=10)
+
+        # 执行下载 ============================================================
+        self.tk_b_act = tt.Button(bootstyle="success", width=5, text="开始",
+                                  command=self.downloads)
+        self.tk_b_act.grid(row=3, column=0, padx=10, pady=10)
+        self.tk_p_act = tt.Progressbar(bootstyle="success-striped", length=435,
+                                       style="TProgressbar", mode='determinate')
+        self.tk_p_act.grid(row=3, column=1, pady=10, columnspan=5, sticky=W)
+        self.tk_l_act = tt.Label(text="0%")
+        self.tk_l_act.grid(row=3, column=5, padx=10, pady=10)
+        self.tk_p_act['value'] = 0
+        self.read_json()
+        self.root.mainloop()
+
+    @staticmethod
+    def open_tool():
+        os.system("start .\\Etchers\\balenaEtcher-win32-x64-1.19.25.part01.exe")
+
+    def load_esps(self):
+        results = ""
+        for i in ["O", "P", "Q", "R"]:
+            process = subprocess.run("cmd /c mountvol %s: /S" % i,
+                                     shell=True, text=True,
+                                     capture_output=True)
+            results = process.stdout
+            if len(results) > 1:
+                continue
+            values = ["不写入ESP"] + self.part + ["%s:\\" % i]
+            self.dl_part_d.configure(values=values)
+            self.dl_part_d.current(len(values) - 1)
+            tk.messagebox.showinfo("成功", "挂载EFI分区成功！")
+            return i
+        tk.messagebox.showerror("错误", "挂载EFI分区失败:\n" + results)
+        return False
+
+    def open_path(self):
+        self.path = filedialog.askdirectory().replace("\\", "/")
+        if not self.path.endswith("/"):
+            self.path += "/"
+        self.path += "MacRecovery/"
+        self.tk_e_url.delete(0, tk.END)
+        self.tk_e_url.insert(0, self.path)
+        self.tk_p_act['value'] = 0
+        self.tk_l_act['text'] = "0%"
+        print("Selected directory:", self.path)
+
+    def load_type(self, event):
+        self.sets = event.widget.get()
+        if self.sets == "在线恢复镜像DMG":
+            self.tk_e_pid.config(state=tk.NORMAL)
+            self.tk_e_uid.config(state=tk.NORMAL)
+            self.dl_part_d.config(state=tk.NORMAL)
+            self.tk_mounts.config(state=tk.NORMAL)
+            self.tk_e_pid.config(bootstyle="info")
+            self.tk_e_uid.config(bootstyle="info")
+            self.save_type()
+        elif self.sets == "离线恢复固件DMG":
+            self.tk_e_pid.delete(0, tk.END)
+            self.tk_e_uid.delete(0, tk.END)
+            self.dl_part_d.current(0)
+            self.tk_e_pid.config(state=tk.DISABLED)
+            self.tk_e_uid.config(state=tk.DISABLED)
+            self.dl_part_d.config(state=tk.DISABLED)
+            self.tk_mounts.config(state=tk.DISABLED)
+            self.tk_e_pid.config(bootstyle="gray")
+            self.tk_e_uid.config(bootstyle="gray")
+        else:
+            self.dl_type_d.current(0)
+
+    def save_type(self, event=None):
+        if event is None:
+            self.name = self.tk_c_sys.get()
+        else:
+            self.name = event.widget.get()
+        if self.name in self.data:
+            self.tk_e_pid.delete(0, tk.END)
+            self.tk_e_uid.delete(0, tk.END)
+            self.tk_e_pid.insert(0, self.data[self.name][0])
+            self.tk_e_uid.insert(0, self.data[self.name][1])
+            self.tk_p_act['value'] = 0
+            self.tk_l_act['text'] = "0%"
+        print("Selected value:", self.name)
+
+    def read_json(self):
+        with open("Configs/DownloadLists.json", "r") as read_file:
+            read_data = json.load(read_file)
+            read_name = [i for i in read_data]
+            self.tk_c_sys["values"] = read_name
+            self.tk_c_sys.current(len(read_name) - 1)
+            self.data = read_data
+
+    def updateRec(self):
+        try:
+            while self.proc is not None and self.proc.is_alive() \
+                    and self.exec['execute']:
+                self.tk_p_act["value"] = self.exec['process']
+                self.tk_l_act['text'] = "%d%%" % int(self.exec['process'])
+                time.sleep(0.2)
+            if self.exec['execute']:
+                self.proc = self.demo = None
+                save_file = "/.contentDetails"
+                save_path = self.path + self.name + "/com.apple.recovery.boot"
+                save_file = save_path + save_file
+                with open(save_file, "w") as save_data:
+                    save_data.write("Install macOS " + self.name)
+                if self.dl_part_d.get() != "不写入ESP":
+                    part_label = self.dl_part_d.get()
+                    if os.path.exists(part_label):
+                        try:
+                            part_path = part_label + "com.apple.recovery.boot"
+                            if os.path.exists(part_path):
+                                shutil.rmtree(part_path)
+                            shutil.copytree(save_path, part_path)
+                            os.system("explorer %s" % part_path.replace("/", "\\"))
+                        except (PermissionError, Exception) as err:
+                            messagebox.showwarning("错误", str(err))
+                            return False
+                    else:
+                        messagebox.showwarning("错误", "所选磁盘不存在")
+                else:
+                    os.system("explorer %s" % self.path.replace("/", "\\"))
+                messagebox.showinfo("恭喜", "下载镜像文件成功")
+        except (SystemExit, Exception) as e:
+            print("Force to stop at:", str(e))
+        self.tk_b_act.config(state=tt.NORMAL)
+
+    def waitProcs(self, proc):
+        if self.exec['execute']:
+            self.exec['execute'] = False
+        count = 3
+        try:
+            raise SystemExit()
+            time.sleep(1)
+        except (SystemExit, Exception) as e:
+            while count > 0 and proc.is_alive():
+                time.sleep(1)
+                print("Wait program exit...")
+                count -= 1
+
+    def onClosing(self, cw=True):
+        if cw:
+            # 获取当前进程ID
+            pid = os.getpid()
+            print("Current process ID is:", pid)
+            # 发送SIGTERM信号结束进程
+            os.kill(pid, signal.SIGTERM)
+        if self.proc is not None and self.proc.is_alive():
+            self.waitProcs(self.proc)
+        if self.demo is not None and self.demo.is_alive():
+            self.waitProcs(self.demo)
+        self.tk_b_act.config(state=tt.NORMAL)
+        if cw:
+            exit(0)
+
+    def downloads(self):
+        if len(self.path) <= 0:
+            messagebox.showerror("错误", "请设置保存路径")
+            return False
+        if self.sets == "在线恢复镜像DMG":
+            pid = self.tk_e_pid.get()
+            uid = self.tk_e_uid.get()
+            self.exec['execute'] = True
+            self.tk_b_act.config(state=tt.DISABLED)
+            self.onClosing(cw=False)
+            if len(pid) <= 0 or len(uid) <= 0:
+                messagebox.showerror("错误", "缺少ID，请选择系统或者手动填写")
+                return False
+            self.tk_p_act['value'] = 0
+            self.tk_l_act['text'] = "0%"
+            save_path = self.path + self.name + '/com.apple.recovery.boot'
+            print("Saving path:", save_path)
+            args = ArgRecDown(
+                action='download',
+                outdir=save_path,
+                basename='',
+                board_id=pid,
+                mlb=uid,
+                code='',
+                os_type='',
+                diagnostics=False,
+                verbose=False,
+                board_db=self.path + self.name + '/boards.json'
+            )
+            self.proc = threading.Thread(target=action_download, args=(args, self.exec,))
+            self.proc.start()
+            self.demo = threading.Thread(target=self.updateRec, args=())
+            self.demo.start()
+        elif self.sets == "离线恢复固件DMG":
+            save_path = self.path + self.name + "/"
+            if self.name.find("-") > 0:
+                vers_name = self.name[6:]
+            else:
+                vers_name = "sequoia"
+            self.tk_b_act.config(state=tt.DISABLED)
+            if os.path.exists(save_path):
+                shutil.rmtree(save_path)
+            self.proc = threading.Thread(target=self.download, args=(save_path, vers_name,))
+            now = threading.Thread(target=self.updateds, args=())
+            self.proc.start()
+            now.start()
+        else:
+            self.dl_type_d.current(0)
+
+    def download(self, save_path, vers_name):
+        g = gibMacOS(interactive=True, download_dir=save_path)
+        g.set_prods(progressbar=self.tk_p_act)
+        try:
+            g.get_for_version(vers_name, dmg=True, progressbar=self.tk_p_act)
+        except (PullGibMacOS.ProgramError, Exception) as err:
+            g.get_for_version(vers_name, dmg=False, progressbar=self.tk_p_act)
+        self.tk_b_act.config(state=tt.NORMAL)
+        self.flag = False
+        messagebox.showinfo("恭喜", "下载镜像文件成功")
+
+    def updateds(self):
+        self.flag = True
+        while self.flag:
+            self.tk_l_act.config(text="%2d%%" % self.tk_p_act['value'])
+            time.sleep(0.1)
+
+
+if __name__ == '__main__':
+    multiprocessing.freeze_support()
+    exe = MacRecDown()

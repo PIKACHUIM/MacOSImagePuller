@@ -1,0 +1,16 @@
+{
+  "app_name": "黑苹果安装辅助工具 Hackintosh Helper V0.1a",
+  "dmg_menu": "镜像下载",
+  "usb_menu": "USB 定制",
+  "gpu_menu": "显卡定制",
+  "pci_menu": "SSDT定制",
+  "net_menu": "网络工具",
+  "add_menu": "其他工具",
+  "inf_memu": "关于我们",
+  "sys_name": "镜像版本",
+  "sys_type": "下载类型",
+  "sys_info": "机型版本",
+  "sys_uuid": "机型串号",
+  "dmg_path": "保存路径",
+  "btn_open": "打开"
+}
