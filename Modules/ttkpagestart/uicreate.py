@@ -63,12 +63,13 @@ class UICreate:
             elif 'value' in view_item and len(view_item['value']) > 0:
                 view_type.current(0)
         # 设置表格 ================================================================
-        if type(view_type) == type(ttk.Treeview) and 'table' in view_item:
+        if type(view_type) == ttk.Treeview and 'table' in view_item:
             view_type["columns"] = tuple(view_item['table'].keys())
-            view_type.column("#0", width=18)
+            view_type.column("#0", width=25)
             view_type.heading("#0", text="#", anchor='center')
             for set_name in view_item['table']:
-                view_type.column(set_name, width=view_item['table'][set_name], anchor='center')
+                width = view_item['table'][set_name]
+                view_type.column(set_name, width=width, anchor='center')
                 view_text = view_name + "_" + set_name
                 view_type.heading(set_name, text=self.i18nString(view_text), anchor='center')
         # 放置核心组件 =========================================================================

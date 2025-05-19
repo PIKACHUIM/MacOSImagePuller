@@ -37,31 +37,45 @@ class UIConfig:
     page = {  # 每个页面元素详细排列内容和方式
         # 示例 *******************************
         "dmg_menu": {
-            "sys_name": {
-                "entry": ttk.Combobox,
+            "sys_list": {
+                "entry": ttk.Treeview,
                 "start": None,
-                "width": 17,
-                "lines": 4,
+                "lines": 6,
                 "color": "info",
-                "saves": ttk.StringVar,
-                "addon": {
-                }
-            },
-            "sys_type": {
-                "entry": ttk.Combobox,
-                "start": None,
-                "width": 17,
-                "lines": 4,
-                "color": "info",
-                "saves": ttk.StringVar,
-                "addon": {
+                "highs": 15,
+                "table": {
+                    "sys_type": 200,
+                    "sys_full": 50,
+                    "sys_info": 170,
+                    "sys_uuid": 170,
                 },
+                "addon": {},
             },
+            # "sys_name": {
+            #     "entry": ttk.Combobox,
+            #     "start": None,
+            #     "width": 17,
+            #     "lines": 2,
+            #     "color": "info",
+            #     "saves": ttk.StringVar,
+            #     "addon": {
+            #     }
+            # },
+            # "sys_type": {
+            #     "entry": ttk.Combobox,
+            #     "start": None,
+            #     "width": 17,
+            #     "lines": 2,
+            #     "color": "info",
+            #     "saves": ttk.StringVar,
+            #     "addon": {
+            #     },
+            # },
             "sys_info": {
                 "entry": ttk.Entry,
                 "start": None,
                 "width": 18,
-                "lines": 4,
+                "lines": 2,
                 "color": "info",
                 "saves": ttk.StringVar,
                 "addon": {
@@ -70,8 +84,8 @@ class UIConfig:
             "sys_uuid": {
                 "entry": ttk.Entry,
                 "start": None,
-                "width": 18,
-                "lines": 4,
+                "width": 19,
+                "lines": 2,
                 "color": "info",
                 "saves": ttk.StringVar,
                 "addon": {
@@ -81,60 +95,192 @@ class UIConfig:
                 "entry": ttk.Entry,
                 "start": None,
                 "width": 30,
-                "lines": 5,
+                "lines": 3,
                 "color": "info",
                 "saves": ttk.StringVar,
                 "addon": {
-                    "btn_open": {
+                    "btn": {
                         "entry": ttk.Button,
                         "start": None,
                         "width": 6,
                         "lines": 1,
                         "color": "info",
                     },
-                    "efi_open": {
+                    "efi": {
                         "entry": ttk.Button,
                         "start": None,
                         "width": 6,
                         "lines": 1,
-                        "color": "warning",
+                        "color": "warning.outline",
                     }
                 },
 
             },
-            "bar_deal": {
-                "entry": ttk.Progressbar,
+            "dmg_save": {
+                "entry": ttk.Combobox,
                 "start": None,
-                "width": 300,
-                "lines": 5,
+                "width": 10,
+                "lines": 1,
                 "color": "info",
                 "saves": ttk.StringVar,
                 "addon": {
-                    "btn_open": {
+                },
+            },
+            "bar_deal": {
+                "entry": ttk.Progressbar,
+                "start": None,
+                "width": 250,
+                "lines": 3,
+                "color": "info",
+                "saves": ttk.StringVar,
+                "addon": {
+                    "exe": {
                         "entry": ttk.Button,
                         "start": None,
                         "width": 6,
                         "lines": 1,
-                        "color": "info",
-                    },
-                    "efi_path": {
-                        "entry": ttk.Entry,
-                        "start": None,
-                        "width": 8,
-                        "lines": 4,
-                        "color": "info",
-                        "saves": ttk.StringVar,
-                        "addon": {
-                        },
+                        "color": "success",
                     },
                 },
 
             },
         },
-        "usb_menu": {},
+        "usb_menu": {
+            "usb_list": {
+                "entry": ttk.Treeview,
+                "start": None,
+                "lines": 6,
+                "color": "info",
+                "highs": 15,
+                "table": {
+                    "usb_root": 200,
+                    "usb_port": 50,
+                    "usb_vers": 50,
+                    "usb_type": 50,
+                    "usb_data": 240,
+                },
+                "addon": {},
+            },
+            "usb_root": {
+                "entry": ttk.Entry,
+                "start": None,
+                "width": 20,
+                "lines": 1,
+                "color": "info",
+                "saves": ttk.StringVar,
+                "addon": {
+                },
+            },
+            "usb_port": {
+                "entry": ttk.Entry,
+                "start": None,
+                "width": 5,
+                "lines": 1,
+                "color": "info",
+                "saves": ttk.StringVar,
+                "addon": {
+                },
+            },
+            "usb_vers": {
+                "entry": ttk.Entry,
+                "start": None,
+                "width": 5,
+                "lines": 1,
+                "color": "info",
+                "saves": ttk.StringVar,
+                "addon": {
+                },
+            },
+            "usb_data": {
+                "entry": ttk.Entry,
+                "start": None,
+                "width": 30,
+                "lines": 2,
+                "color": "info",
+                "saves": ttk.StringVar,
+                "addon": {
+                },
+            },
+            "usb_exec": {
+                "entry": ttk.Button,
+                "start": None,
+                "width": 4,
+                "lines": 1,
+                "color": "success.outline",
+                "saves": ttk.StringVar,
+                "addon": {
+                },
+            },
+            "usb_type": {
+                "entry": ttk.Entry,
+                "start": None,
+                "width": 5,
+                "lines": 1,
+                "color": "info",
+                "saves": ttk.StringVar,
+                "addon": {
+                },
+            },
+            "efi_save": {
+                "entry": ttk.Checkbutton,
+                "start": None,
+                "width": 5,
+                "lines": 1,
+                "color": "info",
+                "saves": ttk.StringVar,
+                "addon": {
+                },
+            },
+            "efi_path": {
+                "label": False,
+                "entry": ttk.Entry,
+                "start": None,
+                "width": 20,
+                "lines": 1,
+                "color": "info",
+                "saves": ttk.StringVar,
+                "addon": {
+                    "btn": {
+                        "entry": ttk.Button,
+                        "start": None,
+                        "width": 4,
+                        "lines": 1,
+                        "color": "info",
+                    },
+                    "efi": {
+                        "entry": ttk.Button,
+                        "start": None,
+                        "width": 4,
+                        "lines": 1,
+                        "color": "secondary.outline",
+                    }
+                },
+            },
+            "usb_pull": {
+                "entry": ttk.Button,
+                "start": None,
+                "width": 4,
+                "lines": 1,
+                "color": "primary.outline",
+                "saves": ttk.StringVar,
+                "addon": {
+                },
+            },
+            "usb_save": {
+                "entry": ttk.Button,
+                "start": None,
+                "width": 4,
+                "lines": 1,
+                "color": "success",
+                "saves": ttk.StringVar,
+                "addon": {
+                },
+            },
+        },
         "gpu_menu": {},
         "pci_menu": {},
         "net_menu": {},
+        "aud_menu": {},
         "add_menu": {},
         "inf_memu": {}
     }
