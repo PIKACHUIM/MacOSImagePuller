@@ -52,7 +52,7 @@ class Utils:
         
         # Sanitize the pads
         pad = str(kwargs.get("pad", ""))
-        sep = str(kwargs.get("separator", "."))
+        sep = str(kwargs.get("separator", ""))
 
         ignore_case = kwargs.get("ignore_case", True)
         

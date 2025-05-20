@@ -7,8 +7,8 @@ import pyglet
 import ttkbootstrap as ttk
 from ttkbootstrap import *
 
-from Modules.AppConfig import UIConfig
-from Modules.LogOutput import Log, LL
+from Modules.ViewUIConfig import UIConfig
+from Modules.LogOutputAPI import Log, LL
 from Modules.ttkpagestart.uicreate import UICreate
 
 

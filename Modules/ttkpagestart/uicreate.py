@@ -135,6 +135,7 @@ class UICreate:
                         if 'highs' in view_item and view_type == ttk.Treeview else None,
                 )
                 for add_name in view_subs
-            }
+            },
+            "place": ()
         }
         return tmp_data

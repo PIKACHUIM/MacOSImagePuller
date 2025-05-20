@@ -1,7 +1,7 @@
 import tkinter
 import tkinter.filedialog
 import ttkbootstrap as ttk
-from Modules.LogOutput import Log, LL
+from Modules.LogOutputAPI import Log, LL
 
 
 class Function:
@@ -42,7 +42,7 @@ class UIConfig:
                 "start": None,
                 "lines": 6,
                 "color": "info",
-                "highs": 15,
+                "highs": 13,
                 "table": {
                     "sys_type": 200,
                     "sys_full": 50,
@@ -51,26 +51,26 @@ class UIConfig:
                 },
                 "addon": {},
             },
-            # "sys_name": {
-            #     "entry": ttk.Combobox,
-            #     "start": None,
-            #     "width": 17,
-            #     "lines": 2,
-            #     "color": "info",
-            #     "saves": ttk.StringVar,
-            #     "addon": {
-            #     }
-            # },
-            # "sys_type": {
-            #     "entry": ttk.Combobox,
-            #     "start": None,
-            #     "width": 17,
-            #     "lines": 2,
-            #     "color": "info",
-            #     "saves": ttk.StringVar,
-            #     "addon": {
-            #     },
-            # },
+            "sys_name": {
+                "entry": ttk.Combobox,
+                "start": None,
+                "width": 17,
+                "lines": 2,
+                "color": "info",
+                "saves": ttk.StringVar,
+                "addon": {
+                }
+            },
+            "sys_type": {
+                "entry": ttk.Combobox,
+                "start": None,
+                "width": 17,
+                "lines": 2,
+                "color": "info",
+                "saves": ttk.StringVar,
+                "addon": {
+                },
+            },
             "sys_info": {
                 "entry": ttk.Entry,
                 "start": None,

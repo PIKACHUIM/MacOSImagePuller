@@ -1,4 +1,5 @@
-import subprocess, plistlib, sys, os, time, json
+import plistlib, sys, os
+
 sys.path.append(os.path.abspath(os.path.dirname(os.path.realpath(__file__))))
 import run
 if sys.version_info < (3,0):
