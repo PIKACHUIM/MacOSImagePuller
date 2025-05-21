@@ -1,5 +1,6 @@
 import tkinter
 import tkinter.filedialog
+
 import ttkbootstrap as ttk
 from Modules.LogOutputAPI import Log, LL
 
@@ -39,22 +40,21 @@ class UIConfig:
         "dmg_menu": {
             "sys_list": {
                 "entry": ttk.Treeview,
-                "start": None,
                 "lines": 6,
                 "color": "info",
                 "highs": 13,
                 "table": {
-                    "sys_type": 200,
+                    "sys_type": 180,
                     "sys_full": 50,
-                    "sys_info": 170,
+                    "sys_info": 190,
                     "sys_uuid": 170,
                 },
                 "addon": {},
             },
             "sys_name": {
-                "entry": ttk.Combobox,
-                "start": None,
-                "width": 17,
+                "entry": ttk.Entry,
+                "pause": True,
+                "width": 20,
                 "lines": 2,
                 "color": "info",
                 "saves": ttk.StringVar,
@@ -63,9 +63,9 @@ class UIConfig:
             },
             "sys_type": {
                 "entry": ttk.Combobox,
-                "start": None,
-                "width": 17,
+                "width": 15,
                 "lines": 2,
+                "value": ["在线恢复镜像DMG", "离线恢复固件DMG"],
                 "color": "info",
                 "saves": ttk.StringVar,
                 "addon": {
@@ -73,8 +73,8 @@ class UIConfig:
             },
             "sys_info": {
                 "entry": ttk.Entry,
-                "start": None,
-                "width": 18,
+                "pause": True,
+                "width": 20,
                 "lines": 2,
                 "color": "info",
                 "saves": ttk.StringVar,
@@ -83,8 +83,8 @@ class UIConfig:
             },
             "sys_uuid": {
                 "entry": ttk.Entry,
-                "start": None,
-                "width": 19,
+                "pause": True,
+                "width": 17,
                 "lines": 2,
                 "color": "info",
                 "saves": ttk.StringVar,
@@ -93,24 +93,24 @@ class UIConfig:
             },
             "dmg_path": {
                 "entry": ttk.Entry,
-                "start": None,
                 "width": 30,
                 "lines": 3,
                 "color": "info",
                 "saves": ttk.StringVar,
+                "value": "./MacRecovery/",
                 "addon": {
                     "btn": {
                         "entry": ttk.Button,
-                        "start": None,
                         "width": 6,
                         "lines": 1,
                         "color": "info",
+                        "start": None,
                     },
                     "efi": {
                         "entry": ttk.Button,
-                        "start": None,
                         "width": 6,
                         "lines": 1,
+                        "start": None,
                         "color": "warning.outline",
                     }
                 },
@@ -118,7 +118,6 @@ class UIConfig:
             },
             "dmg_save": {
                 "entry": ttk.Combobox,
-                "start": None,
                 "width": 10,
                 "lines": 1,
                 "color": "info",
@@ -128,7 +127,6 @@ class UIConfig:
             },
             "bar_deal": {
                 "entry": ttk.Progressbar,
-                "start": None,
                 "width": 250,
                 "lines": 3,
                 "color": "info",
@@ -137,6 +135,7 @@ class UIConfig:
                     "exe": {
                         "entry": ttk.Button,
                         "start": None,
+                        "pause": True,
                         "width": 6,
                         "lines": 1,
                         "color": "success",
@@ -148,7 +147,6 @@ class UIConfig:
         "usb_menu": {
             "usb_list": {
                 "entry": ttk.Treeview,
-                "start": None,
                 "lines": 6,
                 "color": "info",
                 "highs": 15,
@@ -163,7 +161,6 @@ class UIConfig:
             },
             "usb_root": {
                 "entry": ttk.Entry,
-                "start": None,
                 "width": 20,
                 "lines": 1,
                 "color": "info",
@@ -173,7 +170,6 @@ class UIConfig:
             },
             "usb_port": {
                 "entry": ttk.Entry,
-                "start": None,
                 "width": 5,
                 "lines": 1,
                 "color": "info",
@@ -183,7 +179,6 @@ class UIConfig:
             },
             "usb_vers": {
                 "entry": ttk.Entry,
-                "start": None,
                 "width": 5,
                 "lines": 1,
                 "color": "info",
@@ -193,7 +188,6 @@ class UIConfig:
             },
             "usb_data": {
                 "entry": ttk.Entry,
-                "start": None,
                 "width": 30,
                 "lines": 2,
                 "color": "info",
@@ -203,7 +197,6 @@ class UIConfig:
             },
             "usb_exec": {
                 "entry": ttk.Button,
-                "start": None,
                 "width": 4,
                 "lines": 1,
                 "color": "success.outline",
@@ -213,7 +206,6 @@ class UIConfig:
             },
             "usb_type": {
                 "entry": ttk.Entry,
-                "start": None,
                 "width": 5,
                 "lines": 1,
                 "color": "info",
@@ -223,7 +215,6 @@ class UIConfig:
             },
             "efi_save": {
                 "entry": ttk.Checkbutton,
-                "start": None,
                 "width": 5,
                 "lines": 1,
                 "color": "info",
@@ -234,7 +225,6 @@ class UIConfig:
             "efi_path": {
                 "label": False,
                 "entry": ttk.Entry,
-                "start": None,
                 "width": 20,
                 "lines": 1,
                 "color": "info",
@@ -242,23 +232,21 @@ class UIConfig:
                 "addon": {
                     "btn": {
                         "entry": ttk.Button,
-                        "start": None,
                         "width": 4,
                         "lines": 1,
                         "color": "info",
                     },
                     "efi": {
                         "entry": ttk.Button,
-                        "start": None,
                         "width": 4,
                         "lines": 1,
+
                         "color": "secondary.outline",
                     }
                 },
             },
             "usb_pull": {
                 "entry": ttk.Button,
-                "start": None,
                 "width": 4,
                 "lines": 1,
                 "color": "primary.outline",
@@ -268,7 +256,6 @@ class UIConfig:
             },
             "usb_save": {
                 "entry": ttk.Button,
-                "start": None,
                 "width": 4,
                 "lines": 1,
                 "color": "success",

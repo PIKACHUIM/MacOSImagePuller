@@ -3,12 +3,15 @@ import json
 import webbrowser
 import locale
 import tkinter
+from functools import partial
+
 import pyglet
 import ttkbootstrap as ttk
 from ttkbootstrap import *
 
-from Modules.ViewUIConfig import UIConfig
-from Modules.LogOutputAPI import Log, LL
+from Modules.PullRecovery import PullRecovery
+from Modules.ViewUIConfig import UIConfig, Function
+from Modules.LogOutputAPI import Log
 from Modules.ttkpagestart.uicreate import UICreate
 
 
@@ -37,7 +40,9 @@ class HackintoshUI:
         self.config_txt()
         # 读取数据 ============================================================
         self.view = UICreate(self.root, UIConfig.page, self.text)
+        self.dmg_pull = PullRecovery(self.view)
         # 完成载入 ============================================================
+        self.viewSetup()
         self.root.mainloop()
 
     # 读取配置文件 ################################################################
@@ -51,7 +56,18 @@ class HackintoshUI:
         with open(read_name, encoding="utf8") as read_file:
             self.text = json.loads(read_file.read())
 
-    # 获取本地翻译 ################################################################
+    def viewSetup(self):
+        self.dmg_pull.readJson()
+        self.view.views['dmg_menu']['sys_list'].parser(self.dmg_pull.data)
+        self.view.views['dmg_menu']['sys_list'].binder(
+            self.dmg_pull.onSelect, self.view.views['dmg_menu'])
+        self.view.views['dmg_menu']['dmg_path'].addon['efi'].entry.config(command=self.dmg_pull.mountEFI)
+        self.view.views['dmg_menu']['bar_deal'].addon['exe'].entry.config(command=self.dmg_pull.download)
+        self.view.views['dmg_menu']['dmg_path'].addon['btn'].entry.config(command=partial(
+            Function.selectPath,self.view.views['dmg_menu']['dmg_path'].entry))
+        self.dmg_pull.parseEFI()
+        # 获取本地翻译 ################################################################
+
     def i18nString(self, in_name):
         if in_name in self.text:
             result = self.text[in_name]
