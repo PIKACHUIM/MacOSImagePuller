@@ -1,0 +1,643 @@
+[
+  {
+    'name': 'Intel(R) USB 3.20 可扩展主机控制器 - 1.20 (Microsoft)',
+    'identifiers': {
+      'instance_id': 'PCI\\VEN_8086&DEV_7AE0&SUBSYS_8AC4103C&REV_11\\3&11583659&0&A0',
+      'pci_id': [
+        '8086',
+        '7ae0',
+        '8ac4',
+        '103c'
+      ],
+      'pci_revision': 17,
+      'bdf': [
+        0,
+        20,
+        0
+      ],
+      'acpi_path': '\\_SB.PC00.XHCI',
+      'driver_key': '{36fc9e60-c465-11cf-8056-444553540000}\\0000',
+      'location_paths': (
+      'PCIROOT(0)#PCI(1400)',
+      'ACPI(_SB_)#ACPI(PC00)#ACPI(XHCI)'
+      )
+    },
+    'class': <USBControllerTypes.XHCI
+    :
+    48>,
+    'hub_name': 'USB#ROOT_HUB30#4&1f21bbfd&2&0#{f18a0e88-c30c-11d0-8815-00a0c906bed8}',
+    'port_count': 25,
+    'ports': [
+      {
+        'index': 1,
+        'comment': None,
+        'class': <USBDeviceSpeeds.HighSpeed
+        :
+        2>,
+        'status': 'NoDeviceConnected',
+        'type': None,
+        'guessed': <USBPhysicalPortTypes.Internal
+        :
+        255>,
+        'devices': [],
+        'name': 'Port 1',
+        'companion_info': {
+          'port': 0,
+          'hub': '',
+          'multiple_companions': False
+        },
+        'type_c': False,
+        'user_connectable': False
+      },
+      {
+        'index': 2,
+        'comment': None,
+        'class': <USBDeviceSpeeds.HighSpeed
+        :
+        2>,
+        'status': 'DeviceConnected',
+        'type': None,
+        'guessed': <USBPhysicalPortTypes.USBTypeA
+        :
+        0>,
+        'devices': [
+          {
+            'name': 'USB2.0 HUB',
+            'instance_id': 'USB\\VID_214B&PID_7250\\5&341067A7&0&2',
+            'devices': [],
+            'speed': <USBDeviceSpeeds.HighSpeed
+            :
+            2>
+          }
+        ],
+        'name': 'Port 2',
+        'companion_info': {
+          'port': 0,
+          'hub': '',
+          'multiple_companions': False
+        },
+        'type_c': False,
+        'user_connectable': True
+      },
+      {
+        'index': 3,
+        'comment': None,
+        'class': <USBDeviceSpeeds.HighSpeed
+        :
+        2>,
+        'status': 'DeviceConnected',
+        'type': None,
+        'guessed': <USBPhysicalPortTypes.USBTypeA
+        :
+        0>,
+        'devices': [
+          {
+            'name': 'Gaming Keyboard',
+            'instance_id': 'USB\\VID_05AC&PID_024F\\5&341067A7&0&3',
+            'devices': [],
+            'speed': <USBDeviceSpeeds.FullSpeed
+            :
+            1>
+          }
+        ],
+        'name': 'Port 3',
+        'companion_info': {
+          'port': 0,
+          'hub': '',
+          'multiple_companions': False
+        },
+        'type_c': False,
+        'user_connectable': True
+      },
+      {
+        'index': 4,
+        'comment': None,
+        'class': <USBDeviceSpeeds.HighSpeed
+        :
+        2>,
+        'status': 'DeviceConnected',
+        'type': None,
+        'guessed': <USBPhysicalPortTypes.USB3TypeA
+        :
+        3>,
+        'devices': [
+          {
+            'name': 'USB2.0 HUB',
+            'instance_id': 'USB\\VID_0A05&PID_7211\\5&341067A7&0&4',
+            'devices': [],
+            'speed': <USBDeviceSpeeds.FullSpeed
+            :
+            1>
+          }
+        ],
+        'name': 'Port 4',
+        'companion_info': {
+          'port': 21,
+          'hub': 'USB#ROOT_HUB30#4&1f21bbfd&2&0#{f18a0e88-c30c-11d0-8815-00a0c906bed8}',
+          'multiple_companions': False
+        },
+        'type_c': False,
+        'user_connectable': True
+      },
+      {
+        'index': 5,
+        'comment': None,
+        'class': <USBDeviceSpeeds.HighSpeed
+        :
+        2>,
+        'status': 'DeviceConnected',
+        'type': None,
+        'guessed': <USBPhysicalPortTypes.USB3TypeA
+        :
+        3>,
+        'devices': [
+          {
+            'name': 'USB PnP Sound Device',
+            'instance_id': 'USB\\VID_08BB&PID_2902\\5&341067A7&0&5',
+            'devices': [],
+            'speed': <USBDeviceSpeeds.FullSpeed
+            :
+            1>
+          }
+        ],
+        'name': 'Port 5',
+        'companion_info': {
+          'port': 25,
+          'hub': 'USB#ROOT_HUB30#4&1f21bbfd&2&0#{f18a0e88-c30c-11d0-8815-00a0c906bed8}',
+          'multiple_companions': False
+        },
+        'type_c': False,
+        'user_connectable': True
+      },
+      {
+        'index': 6,
+        'comment': None,
+        'class': <USBDeviceSpeeds.HighSpeed
+        :
+        2>,
+        'status': 'NoDeviceConnected',
+        'type': None,
+        'guessed': <USBPhysicalPortTypes.USB3TypeA
+        :
+        3>,
+        'devices': [],
+        'name': 'Port 6',
+        'companion_info': {
+          'port': 22,
+          'hub': 'USB#ROOT_HUB30#4&1f21bbfd&2&0#{f18a0e88-c30c-11d0-8815-00a0c906bed8}',
+          'multiple_companions': False
+        },
+        'type_c': False,
+        'user_connectable': True
+      },
+      {
+        'index': 7,
+        'comment': None,
+        'class': <USBDeviceSpeeds.HighSpeed
+        :
+        2>,
+        'status': 'DeviceConnected',
+        'type': None,
+        'guessed': <USBPhysicalPortTypes.USBTypeA
+        :
+        0>,
+        'devices': [
+          {
+            'name': 'Redmi Turbo 3',
+            'instance_id': 'USB\\VID_18D1&PID_4E11\\22B8899D',
+            'devices': [],
+            'speed': <USBDeviceSpeeds.HighSpeed
+            :
+            2>
+          }
+        ],
+        'name': 'Port 7',
+        'companion_info': {
+          'port': 0,
+          'hub': '',
+          'multiple_companions': False
+        },
+        'type_c': False,
+        'user_connectable': True
+      },
+      {
+        'index': 8,
+        'comment': None,
+        'class': <USBDeviceSpeeds.HighSpeed
+        :
+        2>,
+        'status': 'NoDeviceConnected',
+        'type': None,
+        'guessed': <USBPhysicalPortTypes.Internal
+        :
+        255>,
+        'devices': [],
+        'name': 'Port 8',
+        'companion_info': {
+          'port': 0,
+          'hub': '',
+          'multiple_companions': False
+        },
+        'type_c': False,
+        'user_connectable': False
+      },
+      {
+        'index': 9,
+        'comment': None,
+        'class': <USBDeviceSpeeds.HighSpeed
+        :
+        2>,
+        'status': 'NoDeviceConnected',
+        'type': None,
+        'guessed': <USBPhysicalPortTypes.USB3TypeA
+        :
+        3>,
+        'devices': [],
+        'name': 'Port 9',
+        'companion_info': {
+          'port': 20,
+          'hub': 'USB#ROOT_HUB30#4&1f21bbfd&2&0#{f18a0e88-c30c-11d0-8815-00a0c906bed8}',
+          'multiple_companions': False
+        },
+        'type_c': False,
+        'user_connectable': True
+      },
+      {
+        'index': 10,
+        'comment': None,
+        'class': <USBDeviceSpeeds.HighSpeed
+        :
+        2>,
+        'status': 'DeviceConnected',
+        'type': None,
+        'guessed': <USBPhysicalPortTypes.USB3TypeA
+        :
+        3>,
+        'devices': [
+          {
+            'name': 'Jabra EVOLVE 20 MS',
+            'instance_id': 'USB\\VID_0B0E&PID_0300\\A000FBB717DE0A',
+            'devices': [],
+            'speed': <USBDeviceSpeeds.FullSpeed
+            :
+            1>
+          }
+        ],
+        'name': 'Port 10',
+        'companion_info': {
+          'port': 19,
+          'hub': 'USB#ROOT_HUB30#4&1f21bbfd&2&0#{f18a0e88-c30c-11d0-8815-00a0c906bed8}',
+          'multiple_companions': False
+        },
+        'type_c': False,
+        'user_connectable': True
+      },
+      {
+        'index': 11,
+        'comment': None,
+        'class': <USBDeviceSpeeds.HighSpeed
+        :
+        2>,
+        'status': 'DeviceConnected',
+        'type': None,
+        'guessed': <USBPhysicalPortTypes.USB3TypeA
+        :
+        3>,
+        'devices': [
+          {
+            'name': 'USB Receiver',
+            'instance_id': 'USB\\VID_046D&PID_C539\\5&341067A7&0&11',
+            'devices': [],
+            'speed': <USBDeviceSpeeds.FullSpeed
+            :
+            1>
+          }
+        ],
+        'name': 'Port 11',
+        'companion_info': {
+          'port': 18,
+          'hub': 'USB#ROOT_HUB30#4&1f21bbfd&2&0#{f18a0e88-c30c-11d0-8815-00a0c906bed8}',
+          'multiple_companions': False
+        },
+        'type_c': False,
+        'user_connectable': True
+      },
+      {
+        'index': 12,
+        'comment': None,
+        'class': <USBDeviceSpeeds.HighSpeed
+        :
+        2>,
+        'status': 'NoDeviceConnected',
+        'type': None,
+        'guessed': <USBPhysicalPortTypes.USB3TypeC_WithSwitch
+        :
+        9>,
+        'devices': [],
+        'name': 'Port 12',
+        'companion_info': {
+          'port': 23,
+          'hub': 'USB#ROOT_HUB30#4&1f21bbfd&2&0#{f18a0e88-c30c-11d0-8815-00a0c906bed8}',
+          'multiple_companions': True
+        },
+        'type_c': True,
+        'user_connectable': True
+      },
+      {
+        'index': 13,
+        'comment': None,
+        'class': <USBDeviceSpeeds.HighSpeed
+        :
+        2>,
+        'status': 'NoDeviceConnected',
+        'type': None,
+        'guessed': <USBPhysicalPortTypes.USB3TypeA
+        :
+        3>,
+        'devices': [],
+        'name': 'Port 13',
+        'companion_info': {
+          'port': 17,
+          'hub': 'USB#ROOT_HUB30#4&1f21bbfd&2&0#{f18a0e88-c30c-11d0-8815-00a0c906bed8}',
+          'multiple_companions': False
+        },
+        'type_c': False,
+        'user_connectable': True
+      },
+      {
+        'index': 14,
+        'comment': None,
+        'class': <USBDeviceSpeeds.HighSpeed
+        :
+        2>,
+        'status': 'DeviceConnected',
+        'type': None,
+        'guessed': <USBPhysicalPortTypes.Internal
+        :
+        255>,
+        'devices': [
+          {
+            'name': 'Generic Bluetooth Adapter',
+            'instance_id': 'USB\\VID_0CF3&PID_E300\\5&341067A7&0&14',
+            'devices': [],
+            'speed': <USBDeviceSpeeds.FullSpeed
+            :
+            1>
+          }
+        ],
+        'name': 'Port 14',
+        'companion_info': {
+          'port': 0,
+          'hub': '',
+          'multiple_companions': False
+        },
+        'type_c': False,
+        'user_connectable': False
+      },
+      {
+        'index': 15,
+        'comment': None,
+        'class': <USBDeviceSpeeds.HighSpeed
+        :
+        2>,
+        'status': 'NoDeviceConnected',
+        'type': None,
+        'guessed': <USBPhysicalPortTypes.Internal
+        :
+        255>,
+        'devices': [],
+        'name': 'Port 15',
+        'companion_info': {
+          'port': 0,
+          'hub': '',
+          'multiple_companions': False
+        },
+        'type_c': False,
+        'user_connectable': False
+      },
+      {
+        'index': 16,
+        'comment': None,
+        'class': <USBDeviceSpeeds.HighSpeed
+        :
+        2>,
+        'status': 'NoDeviceConnected',
+        'type': None,
+        'guessed': <USBPhysicalPortTypes.Internal
+        :
+        255>,
+        'devices': [],
+        'name': 'Port 16',
+        'companion_info': {
+          'port': 0,
+          'hub': '',
+          'multiple_companions': False
+        },
+        'type_c': False,
+        'user_connectable': False
+      },
+      {
+        'index': 17,
+        'comment': None,
+        'class': <USBDeviceSpeeds.SuperSpeed
+        :
+        3>,
+        'status': 'NoDeviceConnected',
+        'type': None,
+        'guessed': <USBPhysicalPortTypes.USB3TypeA
+        :
+        3>,
+        'devices': [],
+        'name': 'Port 17',
+        'companion_info': {
+          'port': 13,
+          'hub': 'USB#ROOT_HUB30#4&1f21bbfd&2&0#{f18a0e88-c30c-11d0-8815-00a0c906bed8}',
+          'multiple_companions': False
+        },
+        'type_c': False,
+        'user_connectable': True
+      },
+      {
+        'index': 18,
+        'comment': None,
+        'class': <USBDeviceSpeeds.SuperSpeed
+        :
+        3>,
+        'status': 'NoDeviceConnected',
+        'type': None,
+        'guessed': <USBPhysicalPortTypes.USB3TypeA
+        :
+        3>,
+        'devices': [],
+        'name': 'Port 18',
+        'companion_info': {
+          'port': 11,
+          'hub': 'USB#ROOT_HUB30#4&1f21bbfd&2&0#{f18a0e88-c30c-11d0-8815-00a0c906bed8}',
+          'multiple_companions': False
+        },
+        'type_c': False,
+        'user_connectable': True
+      },
+      {
+        'index': 19,
+        'comment': None,
+        'class': <USBDeviceSpeeds.SuperSpeed
+        :
+        3>,
+        'status': 'NoDeviceConnected',
+        'type': None,
+        'guessed': <USBPhysicalPortTypes.USB3TypeA
+        :
+        3>,
+        'devices': [],
+        'name': 'Port 19',
+        'companion_info': {
+          'port': 10,
+          'hub': 'USB#ROOT_HUB30#4&1f21bbfd&2&0#{f18a0e88-c30c-11d0-8815-00a0c906bed8}',
+          'multiple_companions': False
+        },
+        'type_c': False,
+        'user_connectable': True
+      },
+      {
+        'index': 20,
+        'comment': None,
+        'class': <USBDeviceSpeeds.SuperSpeed
+        :
+        3>,
+        'status': 'NoDeviceConnected',
+        'type': None,
+        'guessed': <USBPhysicalPortTypes.USB3TypeA
+        :
+        3>,
+        'devices': [],
+        'name': 'Port 20',
+        'companion_info': {
+          'port': 9,
+          'hub': 'USB#ROOT_HUB30#4&1f21bbfd&2&0#{f18a0e88-c30c-11d0-8815-00a0c906bed8}',
+          'multiple_companions': False
+        },
+        'type_c': False,
+        'user_connectable': True
+      },
+      {
+        'index': 21,
+        'comment': None,
+        'class': <USBDeviceSpeeds.SuperSpeed
+        :
+        3>,
+        'status': 'NoDeviceConnected',
+        'type': None,
+        'guessed': <USBPhysicalPortTypes.USB3TypeA
+        :
+        3>,
+        'devices': [],
+        'name': 'Port 21',
+        'companion_info': {
+          'port': 4,
+          'hub': 'USB#ROOT_HUB30#4&1f21bbfd&2&0#{f18a0e88-c30c-11d0-8815-00a0c906bed8}',
+          'multiple_companions': False
+        },
+        'type_c': False,
+        'user_connectable': True
+      },
+      {
+        'index': 22,
+        'comment': None,
+        'class': <USBDeviceSpeeds.SuperSpeed
+        :
+        3>,
+        'status': 'NoDeviceConnected',
+        'type': None,
+        'guessed': <USBPhysicalPortTypes.USB3TypeA
+        :
+        3>,
+        'devices': [],
+        'name': 'Port 22',
+        'companion_info': {
+          'port': 6,
+          'hub': 'USB#ROOT_HUB30#4&1f21bbfd&2&0#{f18a0e88-c30c-11d0-8815-00a0c906bed8}',
+          'multiple_companions': False
+        },
+        'type_c': False,
+        'user_connectable': True
+      },
+      {
+        'index': 23,
+        'comment': None,
+        'class': <USBDeviceSpeeds.SuperSpeed
+        :
+        3>,
+        'status': 'NoDeviceConnected',
+        'type': None,
+        'guessed': <USBPhysicalPortTypes.USB3TypeC_WithSwitch
+        :
+        9>,
+        'devices': [],
+        'name': 'Port 23',
+        'companion_info': {
+          'port': 12,
+          'hub': 'USB#ROOT_HUB30#4&1f21bbfd&2&0#{f18a0e88-c30c-11d0-8815-00a0c906bed8}',
+          'multiple_companions': True
+        },
+        'type_c': True,
+        'user_connectable': True
+      },
+      {
+        'index': 24,
+        'comment': None,
+        'class': <USBDeviceSpeeds.SuperSpeed
+        :
+        3>,
+        'status': 'NoDeviceConnected',
+        'type': None,
+        'guessed': <USBPhysicalPortTypes.Internal
+        :
+        255>,
+        'devices': [],
+        'name': 'Port 24',
+        'companion_info': {
+          'port': 0,
+          'hub': '',
+          'multiple_companions': False
+        },
+        'type_c': False,
+        'user_connectable': False
+      },
+      {
+        'index': 25,
+        'comment': None,
+        'class': <USBDeviceSpeeds.SuperSpeed
+        :
+        3>,
+        'status': 'NoDeviceConnected',
+        'type': None,
+        'guessed': <USBPhysicalPortTypes.USB3TypeA
+        :
+        3>,
+        'devices': [],
+        'name': 'Port 25',
+        'companion_info': {
+          'port': 5,
+          'hub': 'USB#ROOT_HUB30#4&1f21bbfd&2&0#{f18a0e88-c30c-11d0-8815-00a0c906bed8}',
+          'multiple_companions': False
+        },
+        'type_c': False,
+        'user_connectable': True
+      }
+    ]
+  },
+  {
+    'name': 'NoMachine USB Adapter',
+    'identifiers': {
+      'instance_id': 'ROOT\\NXUSBH\\0000',
+      'driver_key': '{4d36e97d-e325-11ce-bfc1-08002be10318}\\0050'
+    },
+    'class': <USBControllerTypes.Unknown
+    :
+    9999>,
+    'hub_name': 'VHubStub',
+    'port_count': 0,
+    'ports': []
+  }
+]

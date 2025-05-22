@@ -10,7 +10,7 @@ from pathlib import Path
 import win32com.client
 import wmi
 
-from Scripts import shared
+from Modules.usbtoolboxui.USBToolApi.Scripts import shared
 
 c = wmi.WMI()
 
@@ -74,7 +74,7 @@ end = time.time()
 wmi_time = end - start
 
 
-usbdump_path = Path("resources/usbdump.exe")
+usbdump_path = Path("../../../resources/usbdump.exe")
 
 if getattr(sys, "frozen", False) and hasattr(sys, "_MEIPASS"):
     usbdump_path = Path(sys._MEIPASS) / usbdump_path

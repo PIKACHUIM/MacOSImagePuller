@@ -3,7 +3,8 @@ import copy
 from enum import Enum
 from operator import itemgetter
 
-from Scripts import iokit, shared
+from Modules.usbtoolboxui.USBToolApi.Scripts import iokit
+from Modules.usbtoolboxui.USBToolApi.Scripts import shared
 from base import BaseUSBMap
 
 # from gui import *
@@ -64,10 +65,12 @@ class macOSUSBMap(BaseUSBMap):
 
         err, controller_iterator = iokit.IOServiceGetMatchingServices(iokit.kIOMasterPortDefault, iokit.IOServiceMatching("AppleUSBHostController".encode()), None)
         for controller_instance in iokit.ioiterator_to_list(controller_iterator):
-            controller_properties: dict = iokit.corefoundation_to_native(iokit.IORegistryEntryCreateCFProperties(controller_instance, None, iokit.kCFAllocatorDefault, iokit.kNilOptions)[1])  # type: ignore
+            controller_properties: dict = iokit.corefoundation_to_native(
+                iokit.IORegistryEntryCreateCFProperties(controller_instance, None, iokit.kCFAllocatorDefault, iokit.kNilOptions)[1])  # type: ignore
 
             err, parent_device = iokit.IORegistryEntryGetParentEntry(controller_instance, "IOService".encode(), None)
-            parent_properties: dict = iokit.corefoundation_to_native(iokit.IORegistryEntryCreateCFProperties(parent_device, None, iokit.kCFAllocatorDefault, iokit.kNilOptions)[1])  # type: ignore
+            parent_properties: dict = iokit.corefoundation_to_native(
+                iokit.IORegistryEntryCreateCFProperties(parent_device, None, iokit.kCFAllocatorDefault, iokit.kNilOptions)[1])  # type: ignore
 
             controller = {
                 "name": iokit.io_name_t_to_str(iokit.IORegistryEntryGetName(parent_device, None)[1]),
@@ -98,7 +101,8 @@ class macOSUSBMap(BaseUSBMap):
 
             err, port_iterator = iokit.IORegistryEntryGetChildIterator(controller_instance, "IOService".encode(), None)
             for port in iokit.ioiterator_to_list(port_iterator):
-                port_properties: dict = iokit.corefoundation_to_native(iokit.IORegistryEntryCreateCFProperties(port, None, iokit.kCFAllocatorDefault, iokit.kNilOptions)[1])  # type: ignore
+                port_properties: dict = iokit.corefoundation_to_native(
+                    iokit.IORegistryEntryCreateCFProperties(port, None, iokit.kCFAllocatorDefault, iokit.kNilOptions)[1])  # type: ignore
                 controller["ports"].append(
                     {
                         "name": iokit.io_name_t_to_str(iokit.IORegistryEntryGetName(port, None)[1]),
@@ -135,7 +139,8 @@ class macOSUSBMap(BaseUSBMap):
                     "name": iokit.io_name_t_to_str(iokit.IORegistryEntryGetName(device, None)[1]),
                     "port": iokit.IORegistryEntryCreateCFProperty(device, "PortNum", iokit.kCFAllocatorDefault, iokit.kNilOptions),
                     "location_id": iokit.IORegistryEntryCreateCFProperty(device, "locationID", iokit.kCFAllocatorDefault, iokit.kNilOptions),
-                    "speed": shared.USBDeviceSpeeds(iokit.IORegistryEntryCreateCFProperty(device, "Device Speed", iokit.kCFAllocatorDefault, iokit.kNilOptions)),  # type: ignore
+                    "speed": shared.USBDeviceSpeeds(
+                        iokit.IORegistryEntryCreateCFProperty(device, "Device Speed", iokit.kCFAllocatorDefault, iokit.kNilOptions)),  # type: ignore
                     "devices": self.recurse_devices(iterator),
                 }
             )
@@ -154,7 +159,8 @@ class macOSUSBMap(BaseUSBMap):
         err, usb_plane_iterator = iokit.IORegistryCreateIterator(iokit.kIOMasterPortDefault, "IOUSB".encode(), 0, None)
         controller_instance = iokit.IOIteratorNext(usb_plane_iterator)
         while controller_instance:
-            location_id = iokit.corefoundation_to_native(iokit.IORegistryEntryCreateCFProperty(controller_instance, "locationID", iokit.kCFAllocatorDefault, iokit.kNilOptions))
+            location_id = iokit.corefoundation_to_native(
+                iokit.IORegistryEntryCreateCFProperty(controller_instance, "locationID", iokit.kCFAllocatorDefault, iokit.kNilOptions))
 
             controller = [i for i in self.controllers if i["identifiers"]["location_id"] == location_id][0]
             # This is gonna be a controller

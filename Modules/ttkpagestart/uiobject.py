@@ -3,7 +3,7 @@ from functools import partial
 from ttkbootstrap import *
 from tkinter import ttk
 
-lab = (ttk.Entry, ttk.Combobox)
+lab = (ttk.Entry, ttk.Combobox, ttk.Label)
 wid = (ttk.Entry, ttk.Combobox, ttk.Button, ttk.Label)
 txt = (ttk.Label, ttk.Checkbutton, ttk.Button)
 var = (ttk.Entry, ttk.Label, ttk.Combobox)
@@ -48,8 +48,9 @@ class UIObject:
             variable=self.saves if view_type is ttk.Checkbutton else None,
         )
         if "value" in self.items and self.items["entry"] == ttk.Entry:
-            if self.items["saves"] is not None:
-                self.saves.set(self.items["value"])
+            # if self.items["saves"] is not None:
+            #     self.saves.set(self.items["value"])
+            self.parser(self.items['value'])
         if "addon" in self.items and type(self.items["addon"]) is dict:
             self.addon = {
                 adds_name: UIObject(
@@ -90,7 +91,7 @@ class UIObject:
             self.entry.heading("#0", text="#", anchor='center')
 
     # 设置内容 ============================================
-    def parser(self, in_data: list):
+    def parser(self, in_data: list | str | bool):
         # 设置表格 ========================================
         if type(self.entry) == ttk.Treeview:
             count = 0
@@ -98,7 +99,9 @@ class UIObject:
                 self.entry.insert('', count, values=row)
                 count += 1
         # 设置文本 ========================================
-        if type(self.entry) == ttk.Entry:
+        if type(self.entry) in (
+                ttk.Entry, ttk.Button, ttk.Checkbutton,
+                ttk.Button, ttk.Label):
             if self.saves is not None:
                 self.saves.set(in_data)
             else:

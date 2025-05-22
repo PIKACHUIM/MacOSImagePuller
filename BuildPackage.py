@@ -13,17 +13,17 @@ add_files = [
 
 # TARGET
 target = Executable(
-    script="PullRecovery.py",
+    script="HackintoshUI.py",
     # base="Win32GUI",
-    icon="OpencoreImage.ico",
+    icon="Configs/OpencoreImage.ico",
     uac_admin=True
 )
 
 # SETUP CX FREEZE
 setup(
-    name="Mac OS Recovery Downloader",
-    version="0.2.2024.1106",
-    description="Mac OS Recovery Downloader",
+    name="Hackintosh Toolbox",
+    version="0.1.2025.0520",
+    description="Hackintosh Toolbox for Windows",
     author="Pikachu Ren",
     options={
         'build_exe': {

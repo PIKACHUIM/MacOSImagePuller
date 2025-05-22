@@ -6,7 +6,7 @@ import sys
 from operator import itemgetter
 from pathlib import Path
 
-from Scripts import shared
+from Modules.usbtoolboxui.USBToolApi.Scripts import shared
 
 # input_path = input("File path: ")
 # if input_path:

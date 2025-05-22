@@ -11,9 +11,9 @@ import psutil
 import ttkbootstrap as tt
 from tkinter import filedialog, messagebox
 from ttkbootstrap import *
-from Modules import PullGibMacOS
-from Modules.MacsRecovery import action_download
-from Modules.PullGibMacOS import gibMacOS
+from Modules.downloadfile import PullGibMacOS
+from Modules.downloadfile.MacsRecovery import action_download
+from Modules.downloadfile.PullGibMacOS import gibMacOS
 
 
 class ArgRecDown:

@@ -63,7 +63,7 @@ class UIConfig:
             },
             "sys_type": {
                 "entry": ttk.Combobox,
-                "width": 15,
+                "width": 16,
                 "lines": 2,
                 "value": ["在线恢复镜像DMG", "离线恢复固件DMG"],
                 "color": "info",
@@ -84,7 +84,7 @@ class UIConfig:
             "sys_uuid": {
                 "entry": ttk.Entry,
                 "pause": True,
-                "width": 17,
+                "width": 18,
                 "lines": 2,
                 "color": "info",
                 "saves": ttk.StringVar,
@@ -149,67 +149,128 @@ class UIConfig:
                 "entry": ttk.Treeview,
                 "lines": 6,
                 "color": "info",
-                "highs": 15,
+                "highs": 13,
                 "table": {
-                    "usb_root": 200,
-                    "usb_port": 50,
-                    "usb_vers": 50,
-                    "usb_type": 50,
-                    "usb_data": 240,
+                    "usb_uuid": 25,
+                    "usb_flag": 25,
+                    "usb_name": 210,
+                    "usb_vers": 70,
+                    "usb_type": 80,
+                    "usb_path": 185,
                 },
                 "addon": {},
             },
-            "usb_root": {
-                "entry": ttk.Entry,
-                "width": 20,
-                "lines": 1,
-                "color": "info",
-                "saves": ttk.StringVar,
-                "addon": {
-                },
-            },
-            "usb_port": {
-                "entry": ttk.Entry,
-                "width": 5,
-                "lines": 1,
-                "color": "info",
-                "saves": ttk.StringVar,
-                "addon": {
-                },
-            },
-            "usb_vers": {
-                "entry": ttk.Entry,
-                "width": 5,
-                "lines": 1,
-                "color": "info",
-                "saves": ttk.StringVar,
-                "addon": {
-                },
-            },
-            "usb_data": {
-                "entry": ttk.Entry,
-                "width": 30,
-                "lines": 2,
-                "color": "info",
-                "saves": ttk.StringVar,
-                "addon": {
-                },
-            },
-            "usb_exec": {
+            # 下方按钮 ================================
+            "act_pull": {  # 刷新列表------------------
                 "entry": ttk.Button,
                 "width": 4,
+                "lines": 1,
+                "color": "info",
+                "saves": ttk.StringVar,
+                "addon": {
+                },
+            },
+            "act_used": {  # 智能选择------------------
+                "entry": ttk.Button,
+                "width": 17,
+                "lines": 1,
+                "color": "info.outline",
+                "saves": ttk.StringVar,
+                "addon": {
+                },
+            },
+            "act_help": {  # 智能选择------------------
+                "entry": ttk.Button,
+                "width": 4,
+                "lines": 1,
+                "color": "dark",
+                "saves": ttk.StringVar,
+                "addon": {
+                },
+            },
+            "act_full": {  # 全选列表------------------
+                "entry": ttk.Button,
+                "width": 5,
                 "lines": 1,
                 "color": "success.outline",
                 "saves": ttk.StringVar,
                 "addon": {
                 },
             },
-            "usb_type": {
-                "entry": ttk.Entry,
-                "width": 5,
+            "act_none": {  # 清空列表------------------
+                "entry": ttk.Button,
+                "width": 4,
                 "lines": 1,
-                "color": "info",
+                "color": "warning.outline",
                 "saves": ttk.StringVar,
+                "addon": {
+                },
+            },
+            "act_exec": {  # 执行定制------------------
+                "entry": ttk.Button,
+                "width": 4,
+                "lines": 1,
+                "color": "success",
+                "saves": ttk.StringVar,
+                "addon": {
+                },
+            },
+            # 详细信息 ================================
+            "usb_path": {
+                "entry": ttk.Label,
+                "pause": True,
+                "width": 18,
+                "lines": 1,
+                "color": "default",
+                "value": "",
+                "addon": {
+                },
+            },
+            "usb_uuid": {
+                "entry": ttk.Label,
+                "pause": True,
+                "width": 8,
+                "lines": 1,
+                "color": "default",
+                "value": "",
+                "addon": {
+                },
+            },
+            "usb_vers": {
+                "entry": ttk.Label,
+                "pause": True,
+                "width": 8,
+                "lines": 1,
+                "color": "default",
+                "value": "",
+                "addon": {
+                },
+            },
+            "usb_data": {
+                "entry": ttk.Label,
+                "width": 28,
+                "lines": 2,
+                "color": "default",
+                "value": "",
+                "addon": {
+                },
+            },
+            "usb_exec": {
+                "entry": ttk.Checkbutton,
+                "width": 4,
+                "lines": 1,
+                "color": "info.Roundtoggle.Toolbutton",
+                "saves": ttk.BooleanVar,
+                "addon": {
+                },
+            },
+            "usb_type": {
+                "entry": ttk.Label,
+                "pause": True,
+                "width": 8,
+                "lines": 1,
+                "color": "default",
+                "value": "",
                 "addon": {
                 },
             },
@@ -217,7 +278,7 @@ class UIConfig:
                 "entry": ttk.Checkbutton,
                 "width": 5,
                 "lines": 1,
-                "color": "info",
+                "color": "info.Roundtoggle.Toolbutton",
                 "saves": ttk.StringVar,
                 "addon": {
                 },
@@ -225,14 +286,15 @@ class UIConfig:
             "efi_path": {
                 "label": False,
                 "entry": ttk.Entry,
-                "width": 20,
-                "lines": 1,
-                "color": "info",
+                "pause": True,
+                "width": 28,
+                "lines": 2,
+                "color": "gray",
                 "saves": ttk.StringVar,
                 "addon": {
                     "btn": {
                         "entry": ttk.Button,
-                        "width": 4,
+                        "width": 5,
                         "lines": 1,
                         "color": "info",
                     },
@@ -245,15 +307,6 @@ class UIConfig:
                     }
                 },
             },
-            "usb_pull": {
-                "entry": ttk.Button,
-                "width": 4,
-                "lines": 1,
-                "color": "primary.outline",
-                "saves": ttk.StringVar,
-                "addon": {
-                },
-            },
             "usb_save": {
                 "entry": ttk.Button,
                 "width": 4,
@@ -264,10 +317,70 @@ class UIConfig:
                 },
             },
         },
-        "gpu_menu": {},
-        "pci_menu": {},
-        "net_menu": {},
-        "aud_menu": {},
-        "add_menu": {},
-        "inf_memu": {}
+        # GPU定制 ###################################################
+        "gpu_menu": {
+            "txt_none": {
+                "entry": ttk.Label,
+                "width": 20,
+                "lines": 1,
+                "color": "info",
+                "addon": {
+                },
+            },
+        },
+        # PCI定制 ###################################################
+        "pci_menu": {
+            "txt_none": {
+                "entry": ttk.Label,
+                "width": 20,
+                "lines": 1,
+                "color": "info",
+                "addon": {
+                },
+            },
+        },
+        # NET定制 ###################################################
+        "net_menu": {
+            "txt_none": {
+                "entry": ttk.Label,
+                "width": 20,
+                "lines": 1,
+                "color": "info",
+                "addon": {
+                },
+            },
+        },
+        # AUD定制 ###################################################
+        "aud_menu": {
+            "txt_none": {
+                "entry": ttk.Label,
+                "width": 20,
+                "lines": 1,
+                "color": "info",
+                "addon": {
+                },
+            },
+        },
+        # AUD定制 ###################################################
+        "add_menu": {
+            "txt_none": {
+                "entry": ttk.Label,
+                "width": 20,
+                "lines": 1,
+                "color": "info",
+                "addon": {
+                },
+            },
+        },
+        # AUD定制 ###################################################
+        "inf_memu": {
+            "txt_none": {
+                "entry": ttk.Label,
+                "width": 20,
+                "lines": 1,
+                "color": "info",
+                "addon": {
+                },
+            },
+        }
     }

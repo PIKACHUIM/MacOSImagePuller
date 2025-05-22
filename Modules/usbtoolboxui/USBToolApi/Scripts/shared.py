@@ -5,7 +5,7 @@ from time import time
 from typing import Callable
 from pathlib import Path
 
-from Scripts._build import BUILD
+from Modules.usbtoolboxui.USBToolApi.Scripts._build import BUILD
 
 VERSION = "0.2"
 

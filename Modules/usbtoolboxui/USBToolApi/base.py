@@ -12,8 +12,7 @@ from pathlib import Path
 
 from termcolor2 import c as color
 
-from Scripts import shared, utils
-
+from Modules.usbtoolboxui.USBToolApi.Scripts import utils, shared
 
 
 class Colors(Enum):
@@ -35,7 +34,7 @@ def read_property(input_value: bytes, places: int):
 
 
 class BaseUSBMap:
-    def __init__(self):
+    def __init__(self, no_menu=False):
         self.utils = utils.Utils(f"USBToolBox {shared.VERSION}".strip())
         self.controllers = None
         self.json_path = shared.current_dir / Path("usb.json")
@@ -45,8 +44,8 @@ class BaseUSBMap:
             json.load(self.settings_path.open()) if self.settings_path.exists() else {"show_friendly_types": True, "use_native": False, "use_legacy_native": False, "add_comments_to_map": True, "auto_bind_companions": True}
         )
         self.controllers_historical = json.load(self.json_path.open("r")) if self.json_path.exists() else None
-
-        self.monu()
+        if not no_menu:
+            self.monu()
 
     @staticmethod
     def is_same_controller(controller_1, controller_2):
@@ -167,7 +166,8 @@ class BaseUSBMap:
         if port["type"] is not None:
             port_type = shared.USBPhysicalPortTypes(port["type"]) if self.settings["show_friendly_types"] else shared.USBPhysicalPortTypes(port["type"]).value
         elif port["guessed"] is not None:
-            port_type = (str(shared.USBPhysicalPortTypes(port["guessed"])) if self.settings["show_friendly_types"] else str(shared.USBPhysicalPortTypes(port["guessed"]).value)) + " (guessed)"
+            port_type = (str(shared.USBPhysicalPortTypes(port["guessed"])) if self.settings["show_friendly_types"] else str(
+                shared.USBPhysicalPortTypes(port["guessed"]).value)) + " (guessed)"
         else:
             port_type = "Unknown"
 
@@ -284,7 +284,7 @@ class BaseUSBMap:
                 return port[0]
         return None
 
-    def select_ports(self):
+    def select_ports(self,output=None):
         if not self.controllers_historical:
             utils.TUIMenu("Select Ports and Build Kext", "Select an option: ", in_between=["No ports! Use the discovery mode."], loop=True).start()
             return
@@ -358,8 +358,8 @@ class BaseUSBMap:
                 - Set custom names using this formula C:1:Name - Name = None to clear"""
                 )
             )
-
-            output = input("Select an option: ")
+            if output is None:
+                output = input("Select an option: ")
             if not output:
                 continue
             elif output.upper() == "B":

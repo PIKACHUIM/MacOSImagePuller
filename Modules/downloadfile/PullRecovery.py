@@ -9,9 +9,9 @@ from ttkbootstrap import *
 from tkinter import messagebox
 import psutil
 
-from Modules import PullGibMacOS
-from Modules.MacsRecovery import action_download
-from Modules.PullGibMacOS import gibMacOS
+from Modules.downloadfile import PullGibMacOS
+from Modules.downloadfile.MacsRecovery import action_download
+from Modules.downloadfile.PullGibMacOS import gibMacOS
 
 
 class ArgRecDown:

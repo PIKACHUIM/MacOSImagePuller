@@ -14,8 +14,9 @@ except Exception:  # pylint: disable=broad-except
                 return []
 
 
-from base import BaseUSBMap
-from Scripts import shared, usbdump
+from Modules.usbtoolboxui.USBToolApi.base import BaseUSBMap
+from Modules.usbtoolboxui.USBToolApi.Scripts import usbdump
+from Modules.usbtoolboxui.USBToolApi.Scripts import shared
 
 
 class PnpDeviceProperties(Enum):
@@ -31,7 +32,7 @@ class PnpDeviceProperties(Enum):
 
 
 class WindowsUSBMap(BaseUSBMap):
-    def __init__(self):
+    def __init__(self, no_menu=False):
         self.usbdump = None
         if shared.test_mode:
             self.wmi = {}
@@ -40,7 +41,7 @@ class WindowsUSBMap(BaseUSBMap):
             self.wmi = wmi.WMI()
             self.wmi_cache = {}
         self.wmi_retries = {}
-        super().__init__()
+        super().__init__(no_menu)
 
     def update_usbdump(self):
         self.usbdump = usbdump.get_controllers()
@@ -156,5 +157,6 @@ class WindowsUSBMap(BaseUSBMap):
     def update_devices(self):
         self.get_controllers()
 
+if __name__ == "__main__":
+    e = WindowsUSBMap()
 
-e = WindowsUSBMap()
